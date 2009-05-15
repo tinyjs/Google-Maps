@@ -81,12 +81,8 @@ ObbMap.prototype.setup = function(){
 ObbMap.prototype.after = function(){}
 
 ObbMap.prototype.start_loading = function(div_id){
-	$(div_id).fadeTo('fast', 0.6, function(){
-		$(this).addClass('obb_map_loading');
-	});
+	$(div_id).addClass('obb_map_loading');
 }
 ObbMap.prototype.stop_loading = function(div_id){
-	$(div_id).fadeTo('fast', 1, function(){
-		$(this).removeClass('obb_map_loading');
-	});
+	$(this).removeClass('obb_map_loading');
 }

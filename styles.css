@@ -33,6 +33,10 @@
 }
 
 
+.obb_map_loading{opacity:0.5;}
+.obb_map_search_loading{}
+.obb_map_search_success{}
+.obb_map_search_failed{}
 
 #map_section #obb_map_filter_options{
 	width:320px;
