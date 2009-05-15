@@ -161,7 +161,7 @@ ObbFilterMap.prototype.add_side_bar = function(){
 ObbFilterMap.prototype.side_bar_actions = function(){
 	var obj = this;
 	$('a.obb_map_move_to').click(function(){
-		var mrk = $(this).attr('href').substring(1);
+		var mrk = $(this).attr('rel');
 		GEvent.trigger(obj.markers[mrk].marker, "click");
 		return false;
 	});
