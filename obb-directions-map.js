@@ -50,12 +50,12 @@ ObbDirectionsMap.prototype.add_directions_container = function(){
  * sort out the directions! google rocks... 
  */
 ObbDirectionsMap.prototype.directions_actions = function(form_posted){
-	var form_rel = $(form_posted).attr('rel'), 
+	var form_rel = $(form_posted).attr('rel'), obj = this,
 			layer_key = $(form_posted).find('input[name=obb_map_layer]').val(), 
 			from_pos = $(form_posted).find('input[name=obb_map_from]').val(), 
 			to_pos = $(form_posted).find('input[name=obb_map_to]').val(),
 			cmd = "to: "+from_pos+" from: "+to_pos+", UK";
-				
+
 	if(form_rel == this.directions_form_rel && typeof(this.directions_panel) != "undefined"){
 		//remove open info windows
 		this.g_map.closeInfoWindow();
@@ -64,11 +64,14 @@ ObbDirectionsMap.prototype.directions_actions = function(form_posted){
 		//hide sidebar & filters
 		$('#'+this.map_filters+', #'+this.side_bar_container).hide().addClass('toggle_hidden');
 		//load in directions
+		this.start_loading('#'+this.directions_container);
 		this.directions_panel.load(cmd, {"locale": "en_UK"});	
 		$('h4.toggler a').addClass('obb_hide');
 		$('.directions_toggle').show();
 		$('h4.directions_toggle a').removeClass('obb_hide');
-		$('#'+this.directions_container).slideDown('fast');	
+		$('#'+this.directions_container).slideDown('fast', function(){
+			obj.stop_loading('#'+obj.directions_container);
+		});	
 	}
 	return false;
 }
